@@ -1,9 +1,9 @@
 // C++ program to find out whether a given graph is Bipartite or not.
 // It works for disconnected graph also.
 
-//vis[i] = -1 /* no color */
-//vis[i] = 0 /* color-1 */
-//vis[i] = 1 /* color-2 */
+//color[i] = -1 /* no color */
+//color[i] = 0 /* color-1 */
+//color[i] = 1 /* color-2 */
 
 #include <bits/stdc++.h>
 using namespace std;
