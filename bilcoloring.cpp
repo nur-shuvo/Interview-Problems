@@ -1,9 +1,9 @@
 // C++ program to find out whether a given graph is Bipartite or not.
 // It works for disconnected graph also.
 
-//color[i] = -1 /* no color */
-//color[i] = 0 /* color-1 */
-//color[i] = 1 /* color-2 */
+// color[i] = -1 /* no color , non visited */
+// color[i] = 0 /* color-1 */
+// color[i] = 1 /* color-2 */
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -26,22 +26,19 @@ int main()
 		}
 		cout<<isBipartite(g,n)<<endl;
 	}
-	return 0;
 }
 
-bool dfs(int u, int G[][MAX], int  V, int vis[],int color[])
+bool dfs(int u, int G[][MAX], int  V, int color[])
 {
      bool flag = true;
-     vis[u] = 1;
      if(color[u]==-1) color[u] = 0;
 
      for(int i=0;i<V;i++){
         if(G[u][i]){
             int v = i;
-            if(vis[v]==0){
-                vis[v] = 1;
+            if(color[v]==-1){
                 color[v] = 1 - color[u];
-                flag = flag & dfs(v,G,V,vis,color);
+                flag = flag & dfs(v,G,V,color);
             }
             else{
                 if(color[u]==color[v]){
@@ -55,12 +52,12 @@ bool dfs(int u, int G[][MAX], int  V, int vis[],int color[])
 
 bool isBipartite(int G[][MAX],int V)
 {
-    int vis[V],color[V];
+    int color[V];
 
-    for(int i=0;i<V;i++) { vis[i] = 0; color[i] = -1; }
+    for(int i=0;i<V;i++) { color[i] = -1; }
 
     for(int i=0;i<V;i++){
-        if(!dfs(i,G,V,vis,color)) return false;
+        if(!dfs(i,G,V,color)) return false;
     }
 
     return true;

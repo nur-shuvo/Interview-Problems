@@ -1,3 +1,5 @@
+// All Pair Shortest Path
+
 #include <stdio.h>
 #include<iostream>
 using namespace std;
@@ -29,7 +31,7 @@ int main()
         }
     }
 
-//    inititialize next[i][j] array. it contains porer node to go j from i node
+//    inititialize next[i][j] array. it contains porer node to go from i to j node
     for(int i=1;i<=V;i++){ for(int j=1;j<=V;j++){
         next[i][j] = j; /* as nothing in middle initially */
         }

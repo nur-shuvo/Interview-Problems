@@ -54,7 +54,7 @@ int main()
         int p = arr[i].a;
         int q = arr[i].b;
 
-        if(vis[p]==1 && vis[q]==1) continue;
+        if(vis[p]==1 && vis[q]==1) continue; /* cycle */
 
         vis[p] = vis[q] = 1;
         total+= arr[i].cost;

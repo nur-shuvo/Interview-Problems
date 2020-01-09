@@ -1,25 +1,24 @@
-#include<stdio.h>
-#include<iostream>
-//zone
+#include<bits/stdc++.h>
 using namespace std;
 //0 -> white (non visited vertices)
 //1 -> gray (in process verices)
 //2 -> black(fully processed veritces)
 int graph[1000][1000]; /* if graph[m][n]=1 then an edge from m to n vertex */
-int N,e;
+int N,e,node1;
 int color[10005];
+int parent[10005];
 bool dfs(int vertex)
 {
     color[vertex] = 1;
-    for(int i =0; i  < N; i++){
+    for(int i = 0 ; i  < N; i++){
 
         if(graph[vertex][i]==1){  /* if adjacent */
-
             if(color[i] == 1){
-//                cout<<vertex<<" "<<i<<endl;
+                node1 = vertex;
                 return true ; //BACK EDGE //cycle
             }
             if(color[i] == 0){
+                parent[i] = vertex;
                 if(dfs(i)){
                     return true;
                 }
@@ -37,6 +36,12 @@ int main()
 
         cin>>N>>e;
 
+
+        for(int i=0;i<N-1;i++){
+            color[i] = 0;
+            parent[i] = i;
+        }
+
         for(int i = 0; i  < e; i++){
             int x,y;
             cin>>x >> y;
@@ -47,14 +52,13 @@ int main()
             if(color[i] == 0){
                 if(dfs(i)){
                     flag = 1;
-                    break;
                 }
             }
         }
 
-        if(flag)
+        if(flag){
             cout<<"1\n";
-
+        }
         else
             cout<<"0\n";
 
@@ -65,5 +69,8 @@ int main()
                 graph[i][j]=0;
         }
 
+
+
     }
 }
+

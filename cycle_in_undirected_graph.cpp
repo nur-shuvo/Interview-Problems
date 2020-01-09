@@ -1,3 +1,5 @@
+/* Checks for if an undirected graph has a cycle, not to print all cycles obviously */
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -18,6 +20,7 @@ bool bfs(int s,vector<int>adj[],int vis[],int parent[])
             }
             else{
                 if(parent[u]!=v){
+                    /* cycle found */
                     return true;
                 }
             }
@@ -49,15 +52,12 @@ int main()
     while(T--){
         int V, E;
         cin>>V>>E;
-
         // array of vectors to represent graph
-        vector<int> adj[V];
+        vector<int> adj[V+1];
 
         int u, v;
         for(int i=0;i<E;i++){
             cin>>u>>v;
-
-            // adding edge to the graph
             adj[u].push_back(v);
             adj[v].push_back(u);
         }
