@@ -37,7 +37,7 @@ int main(){
                 numZeros+=1;
             }
         }
-        if((numZeros-k)%2==0 && (numZeros-k)<=0)
+        if((numZeros-k)%2==0 && (numZeros-k)>=0)
             hash[keyvalue]+=1;
     }
 
